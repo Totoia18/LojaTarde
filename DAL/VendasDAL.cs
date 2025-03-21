@@ -31,23 +31,23 @@ namespace DAL
                 pcodigo.Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(pcodigo);
 
-                SqlParameter pdata = new SqlParameter("@data", SqlDbType.VarChar, 100);
+                SqlParameter pdata = new SqlParameter("@data", SqlDbType.DateTime);
                 pdata.Value = venda.Data;
                 cmd.Parameters.Add(pdata);
 
-                SqlParameter pquantidade = new SqlParameter("@quantidade", SqlDbType.Decimal, 80);
+                SqlParameter pquantidade = new SqlParameter("@quantidade", SqlDbType.Int);
                 pquantidade.Value = venda.Quantidade;
                 cmd.Parameters.Add(pquantidade);
 
-                SqlParameter pfaturado = new SqlParameter("@faturado", SqlDbType.Decimal, 100);
+                SqlParameter pfaturado = new SqlParameter("@faturado", SqlDbType.Bit);
                 pfaturado.Value = venda.Faturado;
                 cmd.Parameters.Add(pfaturado);
 
-                SqlParameter pcodigocliente = new SqlParameter("@codigocliente", SqlDbType.Int, 100);
+                SqlParameter pcodigocliente = new SqlParameter("@codigocliente", SqlDbType.Int);
                 pcodigocliente.Value = venda.Faturado;
                 cmd.Parameters.Add(pcodigocliente);
 
-                SqlParameter pcodigoproduto = new SqlParameter("@codicoproduto", SqlDbType.Int, 100);
+                SqlParameter pcodigoproduto = new SqlParameter("@codicoproduto", SqlDbType.Int);
                 pcodigoproduto.Value = venda.Codigoproduto;
                 cmd.Parameters.Add(pcodigoproduto);
 
@@ -87,23 +87,23 @@ namespace DAL
                 pcodigo.Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(pcodigo);
 
-                SqlParameter pdata = new SqlParameter("@data", SqlDbType.VarChar, 100);
+                SqlParameter pdata = new SqlParameter("@data", SqlDbType.DateTime);
                 pdata.Value = venda.Data;
                 cmd.Parameters.Add(pdata);
 
-                SqlParameter pquantidade = new SqlParameter("@quantidade", SqlDbType.Decimal, 80);
+                SqlParameter pquantidade = new SqlParameter("@quantidade", SqlDbType.Int);
                 pquantidade.Value = venda.Quantidade;
                 cmd.Parameters.Add(pquantidade);
 
-                SqlParameter pfaturado = new SqlParameter("@faturado", SqlDbType.Decimal, 100);
+                SqlParameter pfaturado = new SqlParameter("@faturado", SqlDbType.Bit);
                 pfaturado.Value = venda.Faturado;
                 cmd.Parameters.Add(pfaturado);
 
-                SqlParameter pcodigocliente = new SqlParameter("@codigocliente", SqlDbType.Decimal, 100);
+                SqlParameter pcodigocliente = new SqlParameter("@codigocliente", SqlDbType.Int);
                 pcodigocliente.Value = venda.Codigocliente;
                 cmd.Parameters.Add(pcodigocliente);
 
-                SqlParameter pcodigoproduto = new SqlParameter("@codigoproduto", SqlDbType.Decimal, 100);
+                SqlParameter pcodigoproduto = new SqlParameter("@codigoproduto", SqlDbType.Int);
                 pcodigoproduto.Value = venda.Codigoproduto;
                 cmd.Parameters.Add(pcodigoproduto);
 
