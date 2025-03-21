@@ -1,13 +1,17 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using Microsoft.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Modelos;
-
 
 namespace DAL
 {
-    public class ClienteDal
+    public class VendasDAL
     {
-        public void Incluir(ClienteInformation cliente)
+        public void Incluir(VendaInformation venda)
         {
             //conexão
             SqlConnection cn = new SqlConnection();
@@ -20,29 +24,37 @@ namespace DAL
                 //define que usaremos stored procedure
                 cmd.CommandType = CommandType.StoredProcedure;
                 //executar a stored procedure
-                cmd.CommandText = "insere_cliente";
+                cmd.CommandText = "insere_venda";
 
                 //parâmetros da stored procedure
                 SqlParameter pcodigo = new SqlParameter("@codigo", SqlDbType.Int);
                 pcodigo.Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(pcodigo);
 
-                SqlParameter pnome = new SqlParameter("@nome", SqlDbType.VarChar, 100);
-                pnome.Value = cliente.Nome;
-                cmd.Parameters.Add(pnome);
+                SqlParameter pdata = new SqlParameter("@data", SqlDbType.VarChar, 100);
+                pdata.Value = venda.Data;
+                cmd.Parameters.Add(pdata);
 
-                SqlParameter pemail = new SqlParameter("@email", SqlDbType.VarChar, 80);
-                pemail.Value = cliente.Email;
-                cmd.Parameters.Add(pemail);
+                SqlParameter pquantidade = new SqlParameter("@quantidade", SqlDbType.Decimal, 80);
+                pquantidade.Value = venda.Quantidade;
+                cmd.Parameters.Add(pquantidade);
 
-                SqlParameter ptelefone = new SqlParameter("@telefone", SqlDbType.VarChar, 100);
-                ptelefone.Value = cliente.Telefone;
-                cmd.Parameters.Add(ptelefone);
+                SqlParameter pfaturado = new SqlParameter("@faturado", SqlDbType.Decimal, 100);
+                pfaturado.Value = venda.Faturado;
+                cmd.Parameters.Add(pfaturado);
+
+                SqlParameter pcodigocliente = new SqlParameter("@codigocliente", SqlDbType.Int, 100);
+                pcodigocliente.Value = venda.Faturado;
+                cmd.Parameters.Add(pcodigocliente);
+
+                SqlParameter pcodigoproduto = new SqlParameter("@codicoproduto", SqlDbType.Int, 100);
+                pcodigoproduto.Value = venda.Codigoproduto;
+                cmd.Parameters.Add(pcodigoproduto);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
 
-                cliente.Codigo = (Int32)cmd.Parameters["@codigo"].Value;
+                venda.Codigo = (Int32)cmd.Parameters["@codigo"].Value;
 
             }
             catch (Exception ex)
@@ -55,7 +67,7 @@ namespace DAL
             }
 
         }
-        public void Alterar(ClienteInformation cliente)
+        public void Alterar(VendaInformation venda)
         {
             //conexão
             SqlConnection cn = new SqlConnection();
@@ -68,29 +80,37 @@ namespace DAL
                 //define que usaremos stored procedure
                 cmd.CommandType = CommandType.StoredProcedure;
                 //executar a stored procedure
-                cmd.CommandText = "insere_cliente";
+                cmd.CommandText = "insere_venda";
 
                 //parâmetros da stored procedure
                 SqlParameter pcodigo = new SqlParameter("@codigo", SqlDbType.Int);
                 pcodigo.Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(pcodigo);
 
-                SqlParameter pnome = new SqlParameter("@nome", SqlDbType.VarChar, 100);
-                pnome.Value = cliente.Nome;
-                cmd.Parameters.Add(pnome);
+                SqlParameter pdata = new SqlParameter("@data", SqlDbType.VarChar, 100);
+                pdata.Value = venda.Data;
+                cmd.Parameters.Add(pdata);
 
-                SqlParameter pemail = new SqlParameter("@email", SqlDbType.VarChar, 80);
-                pemail.Value = cliente.Email;
-                cmd.Parameters.Add(pemail);
+                SqlParameter pquantidade = new SqlParameter("@quantidade", SqlDbType.Decimal, 80);
+                pquantidade.Value = venda.Quantidade;
+                cmd.Parameters.Add(pquantidade);
 
-                SqlParameter ptelefone = new SqlParameter("@telefone", SqlDbType.VarChar, 100);
-                ptelefone.Value = cliente.Telefone;
-                cmd.Parameters.Add(ptelefone);
+                SqlParameter pfaturado = new SqlParameter("@faturado", SqlDbType.Decimal, 100);
+                pfaturado.Value = venda.Faturado;
+                cmd.Parameters.Add(pfaturado);
+
+                SqlParameter pcodigocliente = new SqlParameter("@codigocliente", SqlDbType.Decimal, 100);
+                pcodigocliente.Value = venda.Codigocliente;
+                cmd.Parameters.Add(pcodigocliente);
+
+                SqlParameter pcodigoproduto = new SqlParameter("@codigoproduto", SqlDbType.Decimal, 100);
+                pcodigoproduto.Value = venda.Codigoproduto;
+                cmd.Parameters.Add(pcodigoproduto);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
 
-                cliente.Codigo = (Int32)cmd.Parameters["@codigo"].Value;
+                venda.Codigo = (Int32)cmd.Parameters["@codigo"].Value;
 
             }
             catch (Exception ex)
@@ -113,7 +133,7 @@ namespace DAL
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = cn;
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "exclui_cliente";
+                cmd.CommandText = "exclui_produto";
 
                 //parâmetros da stored procedure
                 SqlParameter pcodigo = new SqlParameter("@codigo", SqlDbType.Int);
@@ -127,9 +147,9 @@ namespace DAL
                     throw new Exception("Nãõ foi possivel excluir o cliente " + codigo);
                 }
             }
-                 
+
             catch (Exception ex)
-            { 
+            {
                 throw new Exception("Servidor SQL erro:  " + ex.Message);
             }
             finally
@@ -163,8 +183,9 @@ namespace DAL
 
                 throw;
             }
-            
+
         }
-        
+
     }
 }
+    

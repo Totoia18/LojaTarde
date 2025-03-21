@@ -9,7 +9,7 @@ namespace Modelos
     public class VendaInformation
     {
         private int _codigo;
-        public int _Codigo
+        public int Codigo
         {
             get { return _codigo; }
             set { _codigo = value; }
@@ -33,7 +33,7 @@ namespace Modelos
             set { _faturado = value; }
         }
         private int _codigocliente;
-        public int _Codigocliente
+        public int Codigocliente
         {
             get { return _codigocliente; }
             set { _codigocliente = value; }

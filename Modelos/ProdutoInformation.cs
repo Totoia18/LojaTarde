@@ -9,7 +9,7 @@ namespace Modelos
     public class ProdutoInformation
     {
         private int _codigo;
-        public int _Codigo
+        public int Codigo
         {
             get { return _codigo; }
             set { _codigo = value; }
