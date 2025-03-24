@@ -24,7 +24,7 @@ namespace BLL
             //E-mail é sempre com letras minúsculas
             cliente.Email = cliente.Email.ToLower();
             //se tudo está OK, chama a rotina para inserir
-            ClienteDAL obj = new ClienteDAL();
+            ClienteDal obj = new ClienteDal();
             obj.Incluir(cliente);
         }
         public void Alterar(ClienteInformation cliente)
@@ -36,7 +36,7 @@ namespace BLL
             //E-mail é sempre com letras minúsculas
             cliente.Email = cliente.Email.ToLower();
             //se tudo está OK, chama a rotina para alterar o cliente
-            ClienteDAL obj = new ClienteDAL();
+            ClienteDal obj = new ClienteDal();
             obj.Alterar(cliente);
         }
         public void Excluir(int codigo)
@@ -50,7 +50,7 @@ namespace BLL
         }
         public DataTable Listagem(string filtro)
         {
-            ClienteDAL obj = new ClienteDAL();
+            ClienteDal obj = new ClienteDal();
             return obj.Listagem(filtro);
         }
     }

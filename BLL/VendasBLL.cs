@@ -13,29 +13,30 @@ namespace BLL
 {
     public class VendasBLL
     {
-        public void Incluir(VendaInformation produto)
+        public void Incluir(VendaInformation venda)
         {
-            if (produto.Nome.Trim().Length == 0)
+            if (venda.Data.Trim().Length == 0)
             {
                 throw new Exception("O nome do produto é obrigatório");
             }
             //E-mail é sempre com letras minúsculas
-            produto.Nome = produto.Nome.ToLower();
+            venda.Nome = venda.Nome.ToLower();
             //se tudo está OK, chama a rotina para inserir
             ProdutosDAL obj = new ProdutosDAL();
-            obj.Incluir(produto);
+            VendaInformation venda1 = venda;
+            obj.Incluir(venda);
         }
-        public void Alterar(ProdutoInformation produto)
+        public void Alterar(VendaInformation venda)
         {
-            if (produto.Nome.Trim().Length == 0)
+            if (venda.Nome.Trim().Length == 0)
             {
                 throw new Exception("O nome do produto é obrigatório");
             }
             //E-mail é sempre com letras minúsculas
-            produto.Nome = produto.Nome.ToLower();
+            venda.Nome = venda.Nome.ToLower();
             //se tudo está OK, chama a rotina para inserir o produto
             ProdutosDAL obj = new ProdutosDAL();
-            obj.Alterar(produto);
+            obj.Alterar(venda);
         }
         public void Excluir(int codigo)
         {
@@ -43,12 +44,12 @@ namespace BLL
             {
                 throw new Exception("Selecione um produto antes de excluí-lo");
             }
-            ProdutosDAL obj = new ProdutosDAL();
+            VendasDAL obj = new VendasDAL();
             obj.Excluir(codigo);
         }
         public DataTable Listagem(string filtro)
         {
-            ProdutosDAL obj = new ProdutosDAL();
+            VendasDAL obj = new VendasDAL();
             return obj.Listagem(filtro);
         }
 
