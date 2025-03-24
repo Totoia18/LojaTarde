@@ -7,6 +7,7 @@ using Modelos;
 using DAL;
 using Microsoft.Data.SqlClient;
 using Microsoft.Data;
+using System.Data;
 
 namespace BLL
 {
@@ -23,8 +24,35 @@ namespace BLL
             //E-mail é sempre com letras minúsculas
             cliente.Email = cliente.Email.ToLower();
             //se tudo está OK, chama a rotina para inserir
-            ClienteDal obj = new ClienteDal();
+            ClienteDAL obj = new ClienteDAL();
             obj.Incluir(cliente);
+        }
+        public void Alterar(ClienteInformation cliente)
+        {
+            if (cliente.Nome.Trim().Length == 0)
+            {
+                throw new Exception("O nome do cliente é obrigatório");
+            }
+            //E-mail é sempre com letras minúsculas
+            cliente.Email = cliente.Email.ToLower();
+            //se tudo está OK, chama a rotina para alterar o cliente
+            ClienteDAL obj = new ClienteDAL();
+            obj.Alterar(cliente);
+        }
+        public void Excluir(int codigo)
+        {
+            if (codigo < 1)
+            {
+                throw new Exception("Selecione um cliente antes de excluí-lo");
+            }
+            ClienteDal obj = new ClienteDal();
+            obj.Excluir(codigo);
+        }
+        public DataTable Listagem(string filtro)
+        {
+            ClienteDAL obj = new ClienteDAL();
+            return obj.Listagem(filtro);
         }
     }
 }
+
