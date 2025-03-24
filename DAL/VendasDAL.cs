@@ -44,7 +44,7 @@ namespace DAL
                 cmd.Parameters.Add(pfaturado);
 
                 SqlParameter pcodigocliente = new SqlParameter("@codigocliente", SqlDbType.Int);
-                pcodigocliente.Value = venda.Faturado;
+                pcodigocliente.Value = venda.Codigocliente;
                 cmd.Parameters.Add(pcodigocliente);
 
                 SqlParameter pcodigoproduto = new SqlParameter("@codicoproduto", SqlDbType.Int);
@@ -168,7 +168,7 @@ namespace DAL
                 cn.ConnectionString = Dados.StringDeConexao();
                 //adapter
                 da.SelectCommand = new SqlCommand();
-                da.SelectCommand.CommandText = "seleciona_cliente";
+                da.SelectCommand.CommandText = "seleciona_vendas";
                 da.SelectCommand.Connection = cn;
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
                 //parâmetro filtro
